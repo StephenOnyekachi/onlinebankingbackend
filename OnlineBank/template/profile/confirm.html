@@ -1,0 +1,134 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>trasfer</title>
+
+<style>
+    .slip
+    {
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .slip_content
+    {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+</style>
+
+<body>
+    
+    <div>
+
+        {% include 'nav_auth/links2.html' %}
+
+        <section class="col-md-12" id="dashboad_section2">
+
+            <div class="slip">
+                <div class="col-md-6 slip_body">
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(1, 1, 92); width: 100%; position: relative;"
+                    >
+                        <h3 class="text-center text-light">Payment Form</h3>
+                    </div>
+                    <div class="col-md-12"
+                        style="padding: 10px;position: relative;background: linear-gradient(to right, rgb(219, 219, 219), rgb(165, 165, 165));"
+                    >
+
+                        <div class="col-md-12 slip_content">
+                            <div>
+                                <h4>receive</h4>
+                            </div>
+                            <div>
+                                <h4>{{ receiver.first_name }} {{ receiver.last_name }}</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 slip_content">
+                            <div>
+                                <h4>bank</h4>
+                            </div>
+                            <div>
+                                <h4>{{ receiver.bank }}</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 slip_content">
+                            <div>
+                                <h4>account number</h4>
+                            </div>
+                            <div>
+                                <h4>{{ receiver.account_number }}</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 slip_content">
+                            <div>
+                                <h4>amount</h4>
+                            </div>
+                            <div>
+                                <h4>{{ amount }}</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12 slip_content">
+                            <div>
+                                <h3>action</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <form action="{% url 'dashboard' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div>
+                            
+                                    <input type="text" 
+                                        value="{{ receiver.user.first_name }} {{ receiver.user.last_name }}" 
+                                        name="receiver" hidden
+                                    >
+                                    <input type="text" 
+                                        value="{{ request.user.first_name }} {{ request.user.last_name }}" 
+                                        name="sender" hidden
+                                    >
+                                    <input type="text" value="{{ receiver.bank }}" name="bank" hidden>
+                                    <input type="text" value="{{ receiver.account_number }}" name="account_number" hidden>
+                                    <input type="number" value="{{ amount }}" name="amount" hidden>
+                                    
+                                </div>
+                                <div>
+                                    <div class="proceed">
+                                        <button>done</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="p-3"
+                                style="margin-top: 30px;"
+                            >
+                                <div class="bg-warning p-3">
+                                    <p class="text-capitalize text-center">
+                                        Thanks for banking with use
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(0, 0, 0); width: 100%; position: relative;"
+                    >
+                        <p class="text-center text-light">Payment Slip</p>
+                        <p class="text-center text-light">Broght To By Site Name</p>
+                        <p class="text-center text-light">Thanks For Pertnership</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}

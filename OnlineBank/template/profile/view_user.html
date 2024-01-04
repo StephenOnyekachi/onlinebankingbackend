@@ -1,0 +1,323 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>view user</title>
+
+<style>
+    .slip
+    {
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .slip_content
+    {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+</style>
+
+<body>
+    
+    <div>
+        {% include 'nav_auth/links.html' %}
+
+        <section class="col-md-12" id="dashboad_section2">
+            
+            {% include 'nav_auth/welcome.html' %}
+
+            <div class="col-md-5">
+                <div class="col-md-12 content">
+                    <div>
+                        <h2>
+                            {{user.currency}}
+                        </h2>
+                    </div>
+                    <div>
+                        <h4>
+                            balance
+                        </h4>
+                    </div>
+                    <div>
+                        <h1>
+                            <span>$</span>{{user.balance}}
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-md-12 content">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div>
+                            <h4>
+                                edit balance:
+                            </h4>
+                            <input type="number" class="form-control" placeholder="Enter Balance" name="balance" value="0">
+                        </div>
+
+                        <div class="proceed">
+                            <button>done</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-12">
+                    <div style="display: flex;justify-content: space-between;">
+                        <!-- <div class="varifile">
+                            <small>Varified</small>
+                        </div> -->
+                        <!-- <div class="proceed">
+                            <a href="{% url 'complete_user' user.id %}">edit user</a>
+                        </div> -->
+                        <div class="proceed">
+                            <a href="{% url 'block_user' user.id %}">
+                                {% if user.block %}
+                                    unblock user
+                                {% else %}
+                                    block user
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="proceed">
+                            <a href="{% url 'delete_user' user.id %}">delete user</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="content">
+                    <div>
+                        <h4>
+                            user name:
+                        </h4>
+                        <span>
+                            {{ user.first_name }}
+                        </span>
+                    </div>
+                    <div>
+                        <h4>
+                            first name:
+                        </h4>
+                        <span>
+                            {{ user.first_name }}
+                        </span>
+                    </div>
+                    <div>
+                        <h4>
+                            last name:
+                        </h4>
+                        <span>
+                            {{ user.last_name }}
+                        </span>
+                    </div>
+                    <div>
+                        <h4>
+                            email:
+                        </h4>
+                        <span>
+                            {{ user.email }}
+                        </span>
+                    </div>
+                    <div>
+                        <h4>
+                            date joined:
+                        </h4>
+                        <span>
+                            {{ user.date_joined}}
+                        </span>
+                    </div>
+                    <div>
+                        <h4>
+                            last login:
+                        </h4>
+                        <span>
+                            {{last_login}}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="content">
+                        <div>
+                            <h4>
+                                account number:
+                            </h4>
+                            <span>
+                                {{ user.account_number }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>
+                                curency type:
+                            </h4>
+                            <span>
+                                {{ user.currency }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>
+                                bank name:
+                            </h4>
+                            <span>
+                                {{ user.bank }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="content">
+                        <div>
+                            <h4>  
+                                Country:
+                            </h4>
+                            <span>
+                                {{user.country}}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>  
+                                Address:
+                            </h4>
+                            <span>{{ user.address }}</span>
+                        </div>
+                        <div>
+                            <h4>
+                                account type:
+                            </h4>
+                            <span>
+                                {{ user.account_type }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="col-md-12" id="dashboad_section2">
+
+            <div class="slip">
+                <div class="col-md-10 slip_body">
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(1, 1, 92); width: 100%; position: relative;"
+                    >
+                        <h3 class="text-center text-light">Users</h3>
+                    </div>
+
+                        <div class="col-md-12 border-bottom"
+                            style="padding: 10px;position: relative;background: linear-gradient(to right, rgb(219, 219, 219), rgb(165, 165, 165));"
+                        >
+                            <div class="col-md-12 slip_content">
+
+                                <div class="col-md-6 content">
+                                    <div>
+                                        <h2 class="text-success">
+                                            {{user.currency}}
+                                        </h2>
+                                    </div>
+                                    <div>
+                                        <h4>
+                                            balance
+                                        </h4>
+                                    </div>
+                                    <div>
+                                        <h1 class="text-success">
+                                            <span>$</span>{{user.balance}}
+                                        </h1>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5 content">
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div>
+                                            <h4>
+                                                edit balance:
+                                            </h4>
+                                            <input type="number" class="form-control" placeholder="Enter Balance" name="balance" value="0">
+                                        </div>
+                
+                                        <div class="proceed">
+                                            <button>done</button>
+                                        </div>
+                                    </form>
+
+                                    <div class="col-md-12">
+                                        <div style="display: flex;justify-content: space-between;">
+                                            <div class="proceed">
+                                                <a href="{% url 'block_user' user.id %}">
+                                                    {% if user.block %}
+                                                        unblock user
+                                                    {% else %}
+                                                        block user
+                                                    {% endif %}
+                                                </a>
+                                            </div>
+                                            <div class="proceed">
+                                                <a href="{% url 'delete_user' user.id %}">delete user</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div>
+                                <a href="{% url 'view_user' user.id %}"
+                                    class="hovers"
+                                >
+                                    <div class="col-md-12 slip_content">
+                                        <h4>
+                                            user name:
+                                        </h4>
+                                        <span>
+                                            {{ user.first_name }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-12 slip_content">
+                                        <h4>
+                                            first name:
+                                        </h4>
+                                        <span>
+                                            {{ user.first_name }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-12 slip_content">
+                                        <h4>
+                                            last name:
+                                        </h4>
+                                        <span>
+                                            {{ user.last_name }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-12 slip_content">
+                                        <div>
+                                            <h4>Last Login</h4>
+                                        </div>
+                                        <div>
+                                            <h4>{{user.last_login}}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 slip_content">
+                                        <div>
+                                            <h4>Account Number</h4>
+                                        </div>
+                                        <div>
+                                            <h4>{{user.account_number}}</h4>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(0, 0, 0); width: 100%; position: relative;"
+                    >
+                        <p class="text-center text-light">Payment Slip</p>
+                        <p class="text-center text-light">Broght To By Site Name</p>
+                        <p class="text-center text-light">Thanks For Pertnership</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}
+

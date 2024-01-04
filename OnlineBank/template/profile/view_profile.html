@@ -1,0 +1,131 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>profile</title>
+
+<body>
+    
+    <div>
+        
+        {% if request.user.is_superuser %}
+        {% include 'nav_auth/links.html' %}
+        {% else %}
+        {% include 'nav_auth/links2.html' %}
+        {% endif %}
+
+        <section class="col-md-12" id="dashboad_section2">
+            
+            {% include 'nav_auth/welcome.html' %}
+
+            <div class="col-md-12 p-3">
+                <div>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h4>
+                            change profile picture:
+                        </h4>
+                        <div>
+                            <input type="file" name="profile_picture" class="form-control">
+                        </div>
+                        <div class="proceed">
+                            <button>proceed</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="content">
+                        <div>
+                            <h4>
+                                user name:
+                            </h4>
+                            <span>
+                                {{ user.username }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>
+                                first name:
+                            </h4>
+                            <span>
+                                {{ user.first_name }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>
+                                last name:
+                            </h4>
+                            <span>
+                                {{ user.last_name }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>
+                                email:
+                            </h4>
+                            <span>
+                                {{ user.email }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>
+                                last login:
+                            </h4>
+                            <span>
+                                {{ user.last_login}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="content">
+                        <div>
+                            <h4>
+                                account number:
+                            </h4>
+                            <span>
+                                {{ user.account_number }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>
+                                curency type:
+                            </h4>
+                            <span>
+                                {{ user.currency }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>  
+                                Country:
+                            </h4>
+                            <span>
+                                {{ user.country }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>  
+                                Address:
+                            </h4>
+                            <span>{{ user.address }}</span>
+                        </div>
+                        <div>
+                            <h4>
+                                account type:
+                            </h4>
+                            <span>
+                                {{ user.account_type }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}

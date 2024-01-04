@@ -1,0 +1,75 @@
+
+@media only screen and (max-width: 1108px){
+    *{
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        font-family: 'Arial Narrow';
+        font-size: 25px;
+    }
+
+    h4{
+        text-transform: uppercase;
+        font-weight: bolder;
+        font-size: 20px;
+        color: var(--dack);
+    }
+}
+
+@media only screen and (max-width: 1000px){
+    *{
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        font-family: 'Arial Narrow';
+        font-size: 25px;
+    }
+
+    #sitename{
+        font-size: 16px;
+    }
+
+    h4{
+        text-transform: uppercase;
+        font-weight: bolder;
+        font-size: 20px;
+        color: var(--dack);
+    }
+
+    .mini_menu{
+        display: block;
+    }
+
+    .menu_links{
+        width: 70%;
+        position: relative;
+        padding: 10px;
+        height: 0;
+        transition: 0.2s;
+    }
+
+    .menu_links.active{
+        height: 100vh;
+        top: 50px;
+        left: 0;
+    }
+
+    .menu_links ul{
+        display: block;
+        margin: 0 auto 0 auto;
+        transition: 0.5s;
+        opacity: 0;
+    }
+
+    .menu_links.active ul{
+        opacity: 1;
+    }
+
+    .menu_links ul li{
+        margin-bottom: 10px;
+    }
+
+    .menu_links ul li a{
+        font-size: 2.5rem;
+    }
+}

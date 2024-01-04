@@ -1,0 +1,151 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>complete user</title>
+
+<body>
+    
+    <div>
+
+        {% include 'nav_auth/links.html' %}
+
+        <section class="col-md-12" id="dashboad_section2">
+            <div class="col-md-12 content_proceed">
+                <div>
+                    <h4 style="color: var(--body-bg);">
+                        welcome back {{ request.user.username }}
+                    </h4>
+                </div>
+                <div class="varifile">
+                    <small>Varified</small>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="col-md-12 content">
+                    <div>
+                        <h4>
+                            user name:
+                        </h4>
+                        <span>{{user.user.username}}</span>
+                    </div>
+                    <div>
+                        <h4>
+                            first name:
+                        </h4>
+                        <span>{{user.first_name}}</span>
+                    </div>
+                    <div>
+                        <h4>
+                            last name:
+                        </h4>
+                        <span>{{user.last_name}}</span>
+                    </div>
+                    <div>
+                        <h4>
+                            email:
+                        </h4>
+                        <span>{{user.email}}</span>
+                    </div>
+                    <div>
+                        <h4>
+                            date joined:
+                        </h4>
+                        <span>{{user.date_joined}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="col-md-12 content">
+                    <div class="border-bottom">
+                        <h2>
+                            Fill in The Forms
+                        </h2>
+                    </div>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="col-md-6">
+                            <h4>
+                                select curency:
+                            </h4>
+                            <select class="form-control" name="currency">
+                                <option value="USD">USD</option>
+                                <option value="NGN">NGN</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>
+                                select bank:
+                            </h4>
+                            <select class="form-control" name="bank">
+                                <option value="Zenith Bank">Zenith Bank</option>
+                                <option value="Access Bank">Access Bank</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>
+                                select account type:
+                            </h4>
+                            <select class="form-control" name="account_type">
+                                <option value="Savings Account">Savings Account</option>
+                                <option value="Current Account">Current Account</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>  
+                                enter country:
+                            </h4>
+                            <input type="text" class="form-control" 
+                                {% if user.country %} value='{{user.country}}' 
+                                {% else %} placeholder="Enter Country" {% endif %} name="country"
+                            >
+                        </div>
+                        <div class="col-md-6">
+                            <h4>  
+                                enter address:
+                            </h4>
+                            <input type="text" class="form-control" 
+                                {% if user.address %} value='{{user.address}}' 
+                                {% else %} placeholder="Enter Address" {% endif %} name="address"
+                            >
+                        </div>
+                        <div class="col-md-6">
+                            <h4>
+                                select gender:
+                            </h4>
+                            <select class="form-control" name="gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>
+                                enter first account balance:
+                            </h4>
+                            <input type="number" class="form-control" 
+                                {% if user.balance %} value='{{user.balance}}' 
+                                {% else %} placeholder="Enter Balance" {% endif %} name="balance"
+                            >
+                        </div>
+                        <div class="col-md-6">
+                            <h4>
+                                choose picture for profile:
+                            </h4>
+                            <input type="file" class="form-control" name="profile_picture"
+                            >
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="proceed">
+                                <button>done with settings</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}
