@@ -1,0 +1,167 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>profile</title>
+
+<style>
+    .slip
+    {
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .slip_content
+    {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+</style>
+
+<body>
+    
+    <div>
+        
+        {% if request.user.is_superuser %}
+        {% include 'nav_auth/links.html' %}
+        {% else %}
+        {% include 'nav_auth/links2.html' %}
+        {% endif %}
+
+        <section class="col-md-12" id="dashboad_section2">
+
+            {% include 'nav_auth/welcome.html' %}
+
+            <div class="col-md-12 slip">
+                <div class="col-md-10 slip_body">
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(1, 1, 92); width: 100%; position: relative;"
+                    >
+                        <h3 class="text-center text-light">User Profile</h3>
+                    </div>
+
+                    <div class="col-md-12"
+                        style="padding: 10px;position: relative;
+                        background: linear-gradient(to right, rgb(219, 219, 219), rgb(165, 165, 165));"
+                    >
+                        
+                        <div class="col-md-12">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <div>
+                                    <h4>
+                                        choose picture for profile:
+                                    </h4>
+                                    <input type="file" class="form-control" name="profile_picture"
+                                    >
+                                </div>
+        
+                                <div class="proceed">
+                                    <button>complete process</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="col-md-12 slip_content">
+                                <h4>
+                                    user name:
+                                </h4>
+                                <h4>
+                                    {{ user.first_name }}
+                                </h4>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <h4>
+                                    first name:
+                                </h4>
+                                <h4>
+                                    {{ user.first_name }}
+                                </h4>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <h4>
+                                    last name:
+                                </h4>
+                                <h4>
+                                    {{ user.last_name }}
+                                </h4>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <h4>
+                                    email:
+                                </h4>
+                                <h4>
+                                    {{ user.email }}
+                                </h4>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>Last Login</h4>
+                                </div>
+                                <div>
+                                    <h4>{{user.last_login}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>Account Number</h4>
+                                </div>
+                                <div>
+                                    <h4>{{user.account_number}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>Account type</h4>
+                                </div>
+                                <div>
+                                    <h4>{{user.account_type}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>currency</h4>
+                                </div>
+                                <div>
+                                    <h4>{{user.currency}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>country</h4>
+                                </div>
+                                <div>
+                                    <h4>{{user.country}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>address</h4>
+                                </div>
+                                <div>
+                                    <h4>{{user.address}}</h4>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(0, 0, 0); width: 100%; position: relative;"
+                    >
+                        <p class="text-center text-light">Payment Slip</p>
+                        <p class="text-center text-light">Broght To By Site Name</p>
+                        <p class="text-center text-light">Thanks For Pertnership</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}

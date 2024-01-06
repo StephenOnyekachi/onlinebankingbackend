@@ -1,0 +1,73 @@
+
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    form{
+        width: 100%;
+    }
+    input[type='text'],
+    input[type='email'],
+    input[type='password']{
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+        outline: 1px solid rgb(107, 107, 107);
+        border: none;
+
+    }
+
+    input[type='submit']{
+        background-color: var(--button-bg);
+        color: var(--button-color);
+        padding: 5px 10px;
+        border-radius: 20px;
+        text-transform: capitalize;
+        transition: 0.2s;
+        border: none;
+    }
+    input[type='submit']:hover{
+        background-color: var(--button-color);
+        color: var(--button-bg);
+        text-decoration: none;
+        border:1px solid  var(--button-bg);
+    }
+</style>
+
+<title>reset_password</title>
+
+<body>
+    
+    <div>
+        
+        <section class="col-md-12" id="dashboad_section2">
+            <div class="col-md-12" style="display: flex; justify-content: space-around;">
+                <div class="col-md-6 content">
+                    <div>
+                        <h2>
+                            Enter New Passworld
+                        </h2>
+                    </div>
+                    <div>
+                        <span>
+                            Pleae enter your new password twice so we can varify you type it in correctly
+                        </span>
+                    </div>
+                    <form method="post" enctype="multipart/form-data" class="form">
+                        {% csrf_token %}
+                        <div>
+                            {{form.as_p}}
+                        </div>
+                        <div class="proceed">
+                            <button>proceed</button>
+                            <input type="submit" value="Proceed">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}

@@ -1,0 +1,163 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>trasfer</title>
+
+<style>
+    .slip
+    {
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .slip_content
+    {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+</style>
+
+<body>
+    
+    <div>
+        
+        {% include 'nav_auth/links2.html' %}
+
+        <section class="col-md-12" id="dashboad_section2">
+
+            {% include 'nav_auth/welcome.html' %}
+
+            {% for message in messages %}
+            <div class="col-md-12 p-3">
+                <div class="text-center">
+                    <h3>{{message}}</h3>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="slip">
+                <div class="col-md-6 slip_body">
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(1, 1, 92); width: 100%; position: relative;"
+                    >
+                        <h3 class="text-center text-light">Payment Form</h3>
+                    </div>
+                    <div class="col-md-12"
+                        style="padding: 10px;position: relative;background: linear-gradient(to right, rgb(219, 219, 219), rgb(165, 165, 165));"
+                    >
+
+                        <div class="col-md-12 slip_content">
+                            <div>
+                                <h4>receive</h4>
+                            </div>
+                            <div>
+                                <h4>{{ receiver.first_name }} {{ receiver.last_name }}</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 slip_content">
+                            <div>
+                                <h4>bank</h4>
+                            </div>
+                            <div>
+                                <h4>{{ receiver.bank }}</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 slip_content">
+                            <div>
+                                <h4>account number</h4>
+                            </div>
+                            <div>
+                                <h4>{{ receiver.account_number }}</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 slip_content">
+                            <div>
+                                <h4>amount</h4>
+                            </div>
+                            <div>
+                                <h4>{{ amount }}</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="p-3"
+                                style="margin-top: 30px;"
+                            >
+                                <div class="bg-warning p-3">
+                                    <p class="text-capitalize text-center">
+                                        enter the 6 digite code send your email
+                                    </p>
+                                    <p class="text-capitalize text-center">
+                                        {{request.user.email}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12 slip_content">
+                            <div>
+                                <h3>action</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <!-- <form action="{% url 'confirm' %}" method="get" enctype="multipart/form-data"> -->
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div>
+                            
+                                    <input type="text" 
+                                        value="{{ receiver.first_name }} {{ receiver.last_name }}" 
+                                        name="receiver" hidden 
+                                    >
+                                    <input type="text" 
+                                        value="{{ request.user.first_name }} {{ request.user.last_name }}" 
+                                        name="sender" hidden 
+                                    >
+                                    <input type="text" value="{{ receiver.bank }}" 
+                                        name="bank" hidden
+                                    >
+                                    <input type="text" value="{{ receiver.account_number }}" 
+                                        name="account_number" 
+                                    >
+                                    <input type="number" value="{{ amount }}" 
+                                        name="amount" 
+                                    >
+                                    
+                                </div>
+                                <div>
+                                    <div>
+                                        <h4>pin</h4>
+                                    </div>
+                                    <div>
+                                        <input type="number" class="form-control" placeholder="Enter Your Pin" 
+                                            name="otp"
+                                        >
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="proceed">
+                                        <button>proceed</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(0, 0, 0); width: 100%; position: relative;"
+                    >
+                        <p class="text-center text-light">Payment Slip</p>
+                        <p class="text-center text-light">Broght To By Site Name</p>
+                        <p class="text-center text-light">Thanks For Pertnership</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}

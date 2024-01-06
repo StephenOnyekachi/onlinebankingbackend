@@ -1,0 +1,52 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>login</title>
+
+<body>
+    
+    <div>
+        {% include 'nav_auth/links3.html' %}
+
+        <section class="col-md-12" id="dashboad_section2">
+            {% for message in messages %}
+            <div class="col-md-12 p-3">
+                <div class="text-center">
+                    <h3>{{message}}</h3>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <div class="col-md-12" style="display: flex; justify-content: space-around;">
+                <div class="col-md-6 content">
+                    <div>
+                        <h2>
+                            Login
+                        </h2>
+                    </div>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div>
+                            <h4>
+                                user name:
+                            </h4>
+                            <input type="text" class="form-control" placeholder="Enter Username" name="username">
+                        </div>
+                        <div>
+                            <h4>
+                                passworld:
+                            </h4>
+                            <input type="password" class="form-control" placeholder="Enter Passworld" name="password">
+                        </div>
+                        <div class="proceed">
+                            <button>proceed</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}

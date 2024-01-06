@@ -1,0 +1,169 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Arial Narrow';
+}
+/* constance */
+:root{
+    --button-bg: rgb(0, 0, 78);
+    --button-color: #f1f1f1;
+    --body-bg: rgb(240, 240, 240);
+    --body-border: rgb(156, 156, 156);
+    --body-color: rgb(0, 0, 78);
+    --dack: rgb(14, 13, 13);
+}
+a:hover{
+    text-decoration: none;
+}
+.content_proceed{
+    border-radius: 20px;
+    padding: 10px 20px;
+    background-color: var(--body-border);
+    text-transform: capitalize;
+    transition: 0.2s;
+}
+.varifile small{
+    background-color: var(--button-color);
+    color: var(--button-bg);
+    text-decoration: none;
+    border:1px solid  var(--button-bg);
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+.proceed{
+    padding: 10px 0px;
+}
+.proceed a{
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-transform: capitalize;
+    transition: 0.2s;
+}
+.proceed a:hover{
+    background-color: var(--button-color);
+    color: var(--button-bg);
+    text-decoration: none;
+    border:1px solid  var(--button-bg);
+}
+.proceed button{
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    padding: 5px 10px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    transition: 0.2s;
+}
+.proceed button:hover{
+    background-color: var(--button-color);
+    color: var(--button-bg);
+    text-decoration: none;
+    border:1px solid  var(--button-bg);
+}
+.history{
+    border:1px solid  var(--body-border);
+    padding: 10px 10px;
+    border-radius: 20px;
+    text-transform: capitalize;
+    transition: 0.2s;
+    margin: 10px 0;
+}
+.history{
+    color: var(--body-border);
+    text-decoration: none;
+}
+.history:hover{
+    background-color: var(--button-color);
+    color: var(--button-bg);
+    text-decoration: none;
+    border:1px solid  var(--button-bg);
+}
+h1{
+    color: var(--button-bg);
+    font-weight: lighter;
+    font-size: 4rem;
+}
+h2{
+    color: var(--body-color);
+    font-size: 4rem;
+}
+h3{
+    text-transform: capitalize;
+    font-weight: 700;
+    line-height: 16px;
+}
+h4{
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 12px;
+    color: var(--dack);
+}
+.mini_menu{
+    position: absolute;
+    width: 30px;
+    /* top: 5px; */
+    right: 20px;
+    cursor: pointer;
+    display: none;
+    margin: 10px;
+}
+
+/* dashbord styling */
+#dashboad_section1{ 
+    background-color: var(--button-bg);
+    color: var(--button-color);
+}
+.menu{
+    display: flex;
+    justify-content: space-between;
+}
+.menu_links ul{
+    display: flex;
+    text-decoration: none;
+}
+.menu_links ul li{
+    display: flex;
+    padding: 10px 0;
+}
+.menu_links ul li a{
+    text-decoration: none;
+    padding: 10px 20px;
+    text-transform: capitalize;
+    color: var(--button-color);
+    transform: 0.2s;
+}
+.menu_links ul li a.active{
+    background-color: white;
+    border-radius: 20px;
+    color: var(--button-bg);
+}
+.menu_links ul li a:hover{
+    background-color: white;
+    border-radius: 20px;
+    color: var(--button-bg);
+}
+
+#dashboad_section2{ 
+    background-color: var(--body-bg);
+    padding: 10px;
+}
+.content{
+    border: 1px solid var(--body-border);
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin: 10px 10px;
+    height: 200px auto;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,115 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>trasfer</title>
+
+<style>
+    .slip
+    {
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .slip_content
+    {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+</style>
+
+<body>
+    
+    <div>
+        
+        {% include 'nav_auth/links2.html' %}
+
+        <section class="col-md-12" id="dashboad_section2">
+
+            <div class="slip">
+                <div class="col-md-6 slip_body">
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(1, 1, 92); width: 100%; position: relative;"
+                    >
+                        <h3 class="text-center text-light">Payment Form</h3>
+                    </div>
+                    <div class="col-md-12"
+                        style="padding: 10px;position: relative;background: linear-gradient(to right, rgb(219, 219, 219), rgb(165, 165, 165));"
+                    >
+                        <div class="p-3"
+                            style="margin-top: 30px;"
+                        >
+                            <div class="bg-warning p-3">
+
+                                <div class="col-md-12 slip_content">
+                                    <div>
+                                        <h4>Current Balance</h4>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-success">$ {{user.balance}}</h4>
+                                    </div>
+                                </div>
+
+                                <p class="text-capitalize text-center">
+                                    you can send to money to your
+                                </p>
+                                <p class="text-capitalize text-center">
+                                    favoright once, family friends etc
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 slip_content">
+                            <div>
+                                <h3>action</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <form action="{% url 'transfer_finish' %}" method="post" enctype="multipart/form-data">
+                                <!-- <form  method="post" enctype="multipart/form-data"> -->
+                                {% csrf_token %}
+                                <div>
+                                    <div>
+                                        <h4>account number</h4>
+                                    </div>
+                                    <div>
+                                        <input type="number" class="form-control p-3" 
+                                            placeholder="Enter Account Number" name="account_number" require
+                                        >
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <h4>amount</h4>
+                                    </div>
+                                    <div>
+                                        <input type="number" class="form-control p-3" 
+                                            placeholder="Enter Amount" name="amount" require
+                                        >
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="proceed">
+                                        <button>proceed</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(0, 0, 0); width: 100%; position: relative;"
+                    >
+                        <p class="text-center text-light">Payment Slip</p>
+                        <p class="text-center text-light">Broght To By Site Name</p>
+                        <p class="text-center text-light">Thanks For Pertnership</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+
+{% endblock %}
+
+

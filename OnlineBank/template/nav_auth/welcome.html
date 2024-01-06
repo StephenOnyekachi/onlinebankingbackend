@@ -1,0 +1,37 @@
+
+{% load static %}
+
+<div class="col-md-12 content_proceed"
+    style="display: flex; justify-content: space-between; box-shadow: 0 2px 5px rgb(99, 99, 250);"
+>
+    <div>
+        <div>
+            <h4 class="text-success">
+                welcome back {{ request.user.username }}
+            </h4>
+        </div>
+        <div class="varifile">
+            <small>Varified</small>
+        </div>
+    </div>
+    <div>
+        <a href="{% url 'view_profile' %}">
+            {% if user.profile_picture %}
+            <div>
+                <img src="{{ request.user.profile_picture.url }}" alt=""
+                    style="
+                        border-radius: 50px; width: 50px; height: 50px; box-shadow: 0 2px 5px white;
+                    "
+                >
+            </div>
+            {% else %}
+            <div>
+                <img src="{% static 'img/001.jpg' %}" alt=""
+                    style="border-radius: 50px; width: 50px; height: 50px;"
+                >
+            </div>
+            {% endif %}
+        </a>
+    </div>
+</div>
+

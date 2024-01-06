@@ -1,0 +1,134 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>users</title>
+
+<style>
+    .slip
+    {
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .slip_content
+    {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+    .hovers.hover
+    {
+        background-color: rgb(17, 17, 17);
+    }
+</style>
+
+<body>
+    
+    <div>
+        
+        {% include 'nav_auth/links.html' %}
+
+        <section class="col-md-12" id="dashboad_section2">
+
+            <div class="slip">
+                <div class="col-md-10 slip_body">
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(1, 1, 92); width: 100%; position: relative;"
+                    >
+                        <h3 class="text-center text-light">Users List</h3>
+                    </div>
+                    {% if users %}
+                        {% for user in users %}
+                        <div class="col-md-12 border-bottom"
+                            style="padding: 10px;position: relative;background: linear-gradient(to right, rgb(219, 219, 219), rgb(165, 165, 165));"
+                        >
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>status</h4>
+                                </div>
+                                <div>
+                                    <div style="margin: 5px;padding: 5px;">
+                                        <div class="proceed">
+                                            {% if user.balance >= 1 %}
+                                            <div class="varifile">
+                                                <small>Varified</small>
+                                            </div>
+                                            {% else %}
+                                            <div>
+                                                <a href="{% url 'complete_user' user.id %}">complete user creation</a>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="{% url 'view_user' user.id %}"
+                                    class="hovers"
+                                >
+                                    <div class="col-md-12 slip_content">
+                                        <div>
+                                            <h4>User Name</h4>
+                                        </div>
+                                        <div>
+                                            <h4>{{user.username}}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 slip_content">
+                                        <div>
+                                            <h4>Current Amount Status</h4>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-success">{{user.currency}} {{user.balance}}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 slip_content">
+                                        <div>
+                                            <h4>Date Joined</h4>
+                                        </div>
+                                        <div>
+                                            <h4>{{user.date_joined}}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 slip_content">
+                                        <div>
+                                            <h4>Last Login</h4>
+                                        </div>
+                                        <div>
+                                            <h4>{{user.last_login}}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 slip_content">
+                                        <div>
+                                            <h4>Account Number</h4>
+                                        </div>
+                                        <div>
+                                            <h4>{{user.account_number}}</h4>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div>
+                            <div class="alert alert-warning text-center">
+                                <h3>No User Fund</h3>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(0, 0, 0); width: 100%; position: relative;"
+                    >
+                        <p class="text-center text-light">Payment Slip</p>
+                        <p class="text-center text-light">Broght To By Site Name</p>
+                        <p class="text-center text-light">Thanks For Pertnership</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}
