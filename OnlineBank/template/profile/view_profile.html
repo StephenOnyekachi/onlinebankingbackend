@@ -4,6 +4,21 @@
 
 <title>profile</title>
 
+<style>
+    .slip
+    {
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .slip_content
+    {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+</style>
+
 <body>
     
     <div>
@@ -15,112 +30,133 @@
         {% endif %}
 
         <section class="col-md-12" id="dashboad_section2">
-            
+
             {% include 'nav_auth/welcome.html' %}
 
-            <div class="col-md-12 p-3">
-                <div>
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <h4>
-                            change profile picture:
-                        </h4>
-                        <div>
-                            <input type="file" name="profile_picture" class="form-control">
-                        </div>
-                        <div class="proceed">
-                            <button>proceed</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="col-md-6">
-                    <div class="content">
-                        <div>
-                            <h4>
-                                user name:
-                            </h4>
-                            <span>
-                                {{ user.username }}
-                            </span>
-                        </div>
-                        <div>
-                            <h4>
-                                first name:
-                            </h4>
-                            <span>
-                                {{ user.first_name }}
-                            </span>
-                        </div>
-                        <div>
-                            <h4>
-                                last name:
-                            </h4>
-                            <span>
-                                {{ user.last_name }}
-                            </span>
-                        </div>
-                        <div>
-                            <h4>
-                                email:
-                            </h4>
-                            <span>
-                                {{ user.email }}
-                            </span>
-                        </div>
-                        <div>
-                            <h4>
-                                last login:
-                            </h4>
-                            <span>
-                                {{ user.last_login}}
-                            </span>
-                        </div>
+            <div class="col-md-12 slip">
+                <div class="col-md-10 slip_body">
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(1, 1, 92); width: 100%; position: relative;"
+                    >
+                        <h3 class="text-center text-light">User Profile</h3>
                     </div>
-                </div>
 
-                <div class="col-md-6">
-                    <div class="content">
-                        <div>
-                            <h4>
-                                account number:
-                            </h4>
-                            <span>
-                                {{ user.account_number }}
-                            </span>
+                    <div class="col-md-12"
+                        style="padding: 10px;position: relative;
+                        background: linear-gradient(to right, rgb(219, 219, 219), rgb(165, 165, 165));"
+                    >
+                        
+                        <div class="col-md-12">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <div>
+                                    <h4>
+                                        choose picture for profile:
+                                    </h4>
+                                    <input type="file" class="form-control" name="profile_picture"
+                                    >
+                                </div>
+        
+                                <div class="proceed">
+                                    <button>complete process</button>
+                                </div>
+                            </form>
+
                         </div>
-                        <div>
-                            <h4>
-                                curency type:
-                            </h4>
-                            <span>
-                                {{ user.currency }}
-                            </span>
+
+                        <div class="col-md-12">
+                            <div class="col-md-12 slip_content">
+                                <h4>
+                                    user name:
+                                </h4>
+                                <h4>
+                                    {{ user.first_name }}
+                                </h4>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <h4>
+                                    first name:
+                                </h4>
+                                <h4>
+                                    {{ user.first_name }}
+                                </h4>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <h4>
+                                    last name:
+                                </h4>
+                                <h4>
+                                    {{ user.last_name }}
+                                </h4>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <h4>
+                                    email:
+                                </h4>
+                                <h4>
+                                    {{ user.email }}
+                                </h4>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>Last Login</h4>
+                                </div>
+                                <div>
+                                    <h4>{{user.last_login}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>Account Number</h4>
+                                </div>
+                                <div>
+                                    <h4>{{user.account_number}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>Account type</h4>
+                                </div>
+                                <div>
+                                    <h4>{{user.account_type}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>currency</h4>
+                                </div>
+                                <div>
+                                    <h4>{{user.currency}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>country</h4>
+                                </div>
+                                <div>
+                                    <h4>{{user.country}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12 slip_content">
+                                <div>
+                                    <h4>address</h4>
+                                </div>
+                                <div>
+                                    <h4>{{user.address}}</h4>
+                                </div>
+                            </div>
+
                         </div>
-                        <div>
-                            <h4>  
-                                Country:
-                            </h4>
-                            <span>
-                                {{ user.country }}
-                            </span>
-                        </div>
-                        <div>
-                            <h4>  
-                                Address:
-                            </h4>
-                            <span>{{ user.address }}</span>
-                        </div>
-                        <div>
-                            <h4>
-                                account type:
-                            </h4>
-                            <span>
-                                {{ user.account_type }}
-                            </span>
-                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(0, 0, 0); width: 100%; position: relative;"
+                    >
+                        <p class="text-center text-light">Payment Slip</p>
+                        <p class="text-center text-light">Broght To By Site Name</p>
+                        <p class="text-center text-light">Thanks For Pertnership</p>
                     </div>
                 </div>
             </div>

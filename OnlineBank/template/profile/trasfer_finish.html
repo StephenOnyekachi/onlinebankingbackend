@@ -27,6 +27,16 @@
 
         <section class="col-md-12" id="dashboad_section2">
 
+            {% include 'nav_auth/welcome.html' %}
+
+            {% for message in messages %}
+            <div class="col-md-12 p-3">
+                <div class="text-center">
+                    <h3>{{message}}</h3>
+                </div>
+            </div>
+            {% endfor %}
+
             <div class="slip">
                 <div class="col-md-6 slip_body">
                     <div class="col-md-12 text-center p-3"  
@@ -95,22 +105,28 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <form action="{% url 'confirm' %}" method="get" enctype="multipart/form-data">
-                            <!-- <form method="post" enctype="multipart/form-data"> -->
+                            <!-- <form action="{% url 'confirm' %}" method="get" enctype="multipart/form-data"> -->
+                            <form method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div>
                             
                                     <input type="text" 
-                                        value="{{ receiver.user.first_name }} {{ receiver.user.last_name }}" 
-                                        name="receiver" hidden
+                                        value="{{ receiver.first_name }} {{ receiver.last_name }}" 
+                                        name="receiver" hidden 
                                     >
                                     <input type="text" 
                                         value="{{ request.user.first_name }} {{ request.user.last_name }}" 
-                                        name="sender" hidden
+                                        name="sender" hidden 
                                     >
-                                    <input type="text" value="{{ receiver.bank }}" name="bank" hidden>
-                                    <input type="text" value="{{ receiver.account_number }}" name="account_number" hidden>
-                                    <input type="number" value="{{ amount }}" name="amount" hidden>
+                                    <input type="text" value="{{ receiver.bank }}" 
+                                        name="bank" hidden
+                                    >
+                                    <input type="text" value="{{ receiver.account_number }}" 
+                                        name="account_number" 
+                                    >
+                                    <input type="number" value="{{ amount }}" 
+                                        name="amount" 
+                                    >
                                     
                                 </div>
                                 <div>
@@ -118,7 +134,9 @@
                                         <h4>pin</h4>
                                     </div>
                                     <div>
-                                        <input type="number" class="form-control" placeholder="Enter Your Pin" name="otp">
+                                        <input type="number" class="form-control" placeholder="Enter Your Pin" 
+                                            name="otp"
+                                        >
                                     </div>
                                 </div>
                                 <div>

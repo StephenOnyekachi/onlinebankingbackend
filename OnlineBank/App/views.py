@@ -21,45 +21,45 @@ from django.utils.http import urlsafe_base64_encode
 
 # Create your views here.
 
-def password_reset_request(request):
-    if request.method == 'POST':
-        password_form = PasswordResetForm(request.POST)
-        if password_form.is_valid():
-            data = password_form.cleaned_data['email']
-            user_email = User.objects.filter(Q(email=data))
-            if user_email.exists():
-                for user in user_email:
-                    subject = 'Password Request'
-                    email_template_name = 'nav_auth/password_message.txt'
-                    parameters = {
-                        'email' : user.email,
-                        'domain' : 'https://127.0.0.1:8000',
-                        'site_name' : 'onlinebank',
-                        'uid' : urlsafe_base64_encode(force_bytes(user.pk)),
-                        'token' : default_token_generator.make_token(user),
-                        'protocol' : 'https',
-                    }
-                    email = render_to_string(
-                        email_template_name,
-                        parameters
-                    )
-                    try:
-                        send_mail(
-                            subject,
-                            email,
-                            '',
-                            [user.email],
-                            fail_silently=False,
-                        )
-                    except:
-                        return HttpResponse('Invalid Header')
-                    return redirect('password_reset_done')
-    else:
-        password_form = PasswordResetForm()
-    context = {
-        'password_form':password_form,
-    }
-    return render(request, 'nav_auth/reset_password.html', context)
+# def password_reset_request(request):
+#     if request.method == 'POST':
+#         password_form = PasswordResetForm(request.POST)
+#         if password_form.is_valid():
+#             data = password_form.cleaned_data['email']
+#             user_email = Users.objects.filter(Q(email=data))
+#             if user_email.exists():
+#                 for user in user_email:
+#                     subject = 'Password Request'
+#                     email_template_name = 'nav_auth/password_message.txt'
+#                     parameters = {
+#                         'email' : user.email,
+#                         'domain' : 'https://127.0.0.1:8000',
+#                         'site_name' : 'onlinebank',
+#                         'uid' : urlsafe_base64_encode(force_bytes(user.pk)),
+#                         'token' : default_token_generator.make_token(user),
+#                         'protocol' : 'https',
+#                     }
+#                     email = render_to_string(
+#                         email_template_name,
+#                         parameters
+#                     )
+#                     try:
+#                         send_mail(
+#                             subject,
+#                             email,
+#                             '',
+#                             [user.email],
+#                             fail_silently=False,
+#                         )
+#                     except:
+#                         return HttpResponse('Invalid Header')
+#                     return redirect('password_reset_done')
+#     else:
+#         password_form = PasswordResetForm()
+#     context = {
+#         'password_form':password_form,
+#     }
+#     return render(request, 'nav_auth/reset_password.html', context)
 
 def Create_new_user(request):
     if request.method == 'POST':
@@ -126,13 +126,13 @@ def Index(request):
 
 def Dashboard(request):
     user = request.user
-    history = Transactions.objects.all().order_by('-id')
+    all_history = Transactions.objects.all().order_by('-id')
     sender_history = Transactions.objects.filter(sender=user).order_by('-id')
     receiver_history = Transactions.objects.filter(receiver=user).order_by('-id')
 
     context = {
         'user':user,
-        'history':history,
+        'all_history':all_history,
         'sender_history':sender_history,
         'receiver_history':receiver_history,
     }
@@ -247,50 +247,51 @@ def Complete_user(request, pk):
 def Transfer(request):
     user = request.user
     
-    # otp = str(random.randint(100000, 999999))
-    # while len(Transfer_otp.objects.filter(otp_code =otp)) != 0:
-    #     otp = str(random.randint(1000, 9999))
-    #     print('otp is',otp)
-    #     messages.success(request, f'{otp}')
+    otp = str(random.randint(100000, 999999))
+    while len(Transfer_otp.objects.filter(otp_code =otp)) != 0:
+        otp = str(random.randint(1000, 9999))
+        print('otp is',otp)
+        messages.success(request, f'{otp}')
 
-    # otp_user = Users.objects.get(use=request.user)
-
-    # Transfer_otp.objects.create(
-    #     user = otp_user,
-    #     otp_code=otp,
-    # )
+    Transfer_otp.objects.create(
+        user = user,
+        otp_code=otp,
+    )
 
     context = {
         'user': user,
-        # 'amount':amount,
-        # 'account':account,
     }
     return render(request, 'profile/trasfer.html', context)
 
 def Transfer_finish(request):
-    # otp = '253975'
 
     if request.method == 'GET':
         amount = request.GET['amount']
         account = request.GET['account_number']
         receiver = Users.objects.get(account_number=account)
 
-    # if request.method == 'POST':
+    if request.method == 'POST':
+        amount = request.POST['amount']
+        account = request.POST['account_number']
+        receiver = Users.objects.get(account_number=account)
 
-    #     # user = request.user
+        user = request.user
 
-    #     # otp = request.POST['otp']
+        otp = request.POST.get('otp')
 
-    #     # otp_code = Transfer_otp.objects.filter(user=user, otp_code=otp)
-        
-    #     # if otp_code.user is not None:
-    #     # if otp_code is not None:
-    #     #     # return redirect('confirm')
-    #     #     print(otp)
-    #     # else:
-    #     #     print('failed')
-    #     # print(otp_code)
-    #     # print(Transfer_otp.objects.first().otp_code)
+        if Transfer_otp.objects.filter(user=user, otp_code=otp).exists():
+
+            # context = {
+            #     'amount':amount,
+            #     'account':account,
+            #     'receiver':receiver,
+
+            #     'otp':otp,
+            # }
+            
+            return redirect('confirm')
+        else:
+            print('falied')
 
     context = {
         'amount':amount,
@@ -308,14 +309,27 @@ def Confirm(request):
         rand1 = str(random.randint(1000, 9990))
         ref_code = uni + rand1
 
+    if request.method == 'GET':
+        amount = request.GET['amount']
+        account = request.GET['account_number']
+        receiver = Users.objects.get(account_number=account)
+
+        otp = request.GET('otp')
+
     if request.method == 'POST':
         account = request.POST.get('account_number')
         print(account)
         amount = request.POST['amount']
-        receiver = Users.objects.get(account_number=account)
-        sender = Users.objects.get(username=request.user)
+        otp = request.POST['otp']
 
-        if sender.balance < int(amount):
+        receiver = Users.objects.get(account_number=account)
+
+        # receiver = Users.objects.get(account_number=account)
+        sender = Users.objects.get(username=request.user)
+        
+        set_amount = sender.balance
+
+        if set_amount < int(amount):
             messages.info(request, 'insufficient balance try again')
             return redirect('transfer')
         else:
@@ -333,13 +347,25 @@ def Confirm(request):
                 amount=amount, 
                 reffrence_code = ref_code,
                 status = 'Success',
-                otp = 1234,
+                otp = otp,
             )
+
+            delete_otp = Transfer_otp.objects.get(user=request.user)
+            if delete_otp:
+                delete_otp.delete()
 
             messages.info(request, 'Transactions Success')
             return redirect('dashboard')
         
-    return render(request, 'profile/confirm.html')
+    context = {
+        'amount':amount,
+        'account':account,
+        'receiver':receiver,
+
+        'otp':otp,
+    }
+        
+    return render(request, 'profile/confirm.html', context)
 
 def History(request, pk):
     history = Transactions.objects.get(id=pk)

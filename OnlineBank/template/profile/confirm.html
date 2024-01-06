@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-<title>trasfer</title>
+<title>confirm payment</title>
 
 <style>
     .slip
@@ -61,7 +61,7 @@
                                 <h4>account number</h4>
                             </div>
                             <div>
-                                <h4>{{ receiver.account_number }}</h4>
+                                <h4>{{ account }}</h4>
                             </div>
                         </div>
 
@@ -80,21 +80,30 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <form action="{% url 'dashboard' %}" method="post" enctype="multipart/form-data">
+                            <form method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div>
                             
                                     <input type="text" 
-                                        value="{{ receiver.user.first_name }} {{ receiver.user.last_name }}" 
+                                        value="{{ first_name }} {{ last_name }}" 
                                         name="receiver" hidden
                                     >
                                     <input type="text" 
                                         value="{{ request.user.first_name }} {{ request.user.last_name }}" 
                                         name="sender" hidden
                                     >
-                                    <input type="text" value="{{ receiver.bank }}" name="bank" hidden>
-                                    <input type="text" value="{{ receiver.account_number }}" name="account_number" hidden>
-                                    <input type="number" value="{{ amount }}" name="amount" hidden>
+                                    <input type="text" value="{{ receiver.bank }}" name="bank" 
+                                        hidden 
+                                    >
+                                    <input type="text" value="{{ receiver.account_number }}" name="account_number" 
+                                        hidden
+                                    >
+                                    <input type="number" value="{{ amount }}" name="amount" 
+                                        hidden
+                                    >
+                                    <input type="number" value="{{ otp }}" 
+                                        name="otp" hidden
+                                    >
                                     
                                 </div>
                                 <div>

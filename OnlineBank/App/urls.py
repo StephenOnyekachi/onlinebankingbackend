@@ -27,19 +27,19 @@ urlpatterns = [
     path('history/<int:pk>/', views.History, name='history'),
     
 
-    # path('reset_password/', auth_views.PasswordResetView.as_view(template_name='nav_auth/reset_password.html'),
-    #     name='reset_password'),
+    path('reset_password/', auth_views.PasswordResetView.as_view(template_name='nav_auth/reset_password.html'),
+        name='reset_password'),
 
-    path('reset_password/', views.password_reset_request, name='reset_password'),
+    # path('reset_password/', views.password_reset_request, name='reset_password'),
 
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='nav_auth/reset_password_sent.html'), 
         name='password_reset_done'),
 
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='nav_auth/reset.html'), 
+    path('reset_confirm/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='nav_auth/reset.html'), 
         name='password_reset_confirm'),
 
-    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='nav_auth/reset_password_complete.html'), 
-        name='reset_password_complete'),
+    path('rest_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='nav_auth/reset_password_complete.html'), 
+        name='password_reset_complete'),
 
 ]
 

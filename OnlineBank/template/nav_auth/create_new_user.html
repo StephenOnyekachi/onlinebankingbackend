@@ -4,79 +4,130 @@
 
 <title>signup</title>
 
+<style>
+    /* .slip
+    {
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .slip_content
+    {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+    .hovers.hover
+    {
+        background-color: rgb(17, 17, 17);
+    } */
+</style>
+
 <body>
     
     <div>
 
         {% include 'nav_auth/links.html' %}
-
+        
         <section class="col-md-12" id="dashboad_section2">
-            
-            {% include 'nav_auth/welcome.html' %}
 
-            <div class="col-md-12">
-                <div class="col-md-12 content">
-                    <div class="border-bottom">
-                        <h2>
-                            Fill in The Forms
-                        </h2>
+            <div class="slip">
+                <div class="col-md-10 slip_body">
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(1, 1, 92); width: 100%; position: relative;"
+                    >
+                        <h3 class="text-center text-light">Create New User</h3>
                     </div>
-                    {% for message in messages %}
-                    <div class="p-3">
-                        <div class="alert alert-warning text-center">
-                            <h3>{{message}}</h3>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <div>
-                            <h4>
-                                user name:
-                            </h4>
-                            <input type="text" class="form-control" placeholder="Enter User Name" name="username">
-                        </div>
-                        <div>
-                            <h4>
-                                first name:
-                            </h4>
-                            <input type="text" class="form-control" placeholder="Enter First Name" name="firstname">
-                        </div>
-                        <div>
-                            <h4>
-                                last name:
-                            </h4>
-                            <input type="text" class="form-control" placeholder="Enter Last Name" name="lastname">
-                        </div>
-                        <div>
-                            <h4>
-                                phone number:
-                            </h4>
-                            <input type="text" class="form-control" placeholder="Enter phone number" name="phone_number">
-                        </div>
-                        <div>
-                            <h4>
-                                email:
-                            </h4>
-                            <input type="email" class="form-control" placeholder="Enter Email" name="email">
-                        </div>
-                        <div>
-                            <h4>
-                                create password:
-                            </h4>
-                            <input type="password" class="form-control" placeholder="Enter Password" name="password1">
-                        </div>
-                        <div>
-                            <h4>
-                                confirm password:
-                            </h4>
-                            <input type="password" class="form-control" placeholder="Confirm Password" name="password2">
-                        </div>
 
-                        <div class="proceed">
-                            <button>proceed</button>
+                        <div class="col-md-12 border-bottom"
+                            style="padding: 10px;position: relative;
+                            background: linear-gradient(to right, rgb(219, 219, 219), rgb(165, 165, 165));"
+                        >
+                            <div class="col-md-12 slip_content">
+
+                                <div class="col-md-12">
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div>
+                                            <h4>
+                                                user name:
+                                            </h4>
+                                            <input type="text" class="form-control" placeholder="Enter User Name" 
+                                                name="username"
+                                            >
+                                        </div>
+
+                                        <div>
+                                            <h4>
+                                                first name:
+                                            </h4>
+                                            <input type="text" class="form-control" placeholder="Enter First Name" 
+                                                name="firstname"
+                                            >
+                                        </div>
+
+                                        <div>
+                                            <h4>
+                                                last name:
+                                            </h4>
+                                            <input type="text" class="form-control" placeholder="Enter Last Name" 
+                                                name="lastname"
+                                            >
+                                        </div>
+
+                                        <div>
+                                            <h4>
+                                                phone number:
+                                            </h4>
+                                            <input type="text" class="form-control" placeholder="Enter phone number" 
+                                                name="phone_number"
+                                            >
+                                        </div>
+
+                                        <div>
+                                            <h4>
+                                                email:
+                                            </h4>
+                                            <input type="email" class="form-control" placeholder="Enter Email" 
+                                                name="email"
+                                            >
+                                        </div>
+
+                                        <div>
+                                            <h4>
+                                                create password:
+                                            </h4>
+                                            <input type="password" class="form-control" placeholder="Enter Password" 
+                                                name="password1"
+                                            >
+                                        </div>
+
+                                        <div>
+                                            <h4>
+                                                confirm password:
+                                            </h4>
+                                            <input type="password" class="form-control" placeholder="Confirm Password" 
+                                                name="password2"
+                                            >
+                                        </div>
+                
+                                        <div class="proceed">
+                                            <button>proceed</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                
+                            </div>
+
                         </div>
-                    </form>
+                    <div class="col-md-12 text-center p-3"  
+                        style="background-color: rgb(0, 0, 0); width: 100%; position: relative;"
+                    >
+                        <p class="text-center text-light">Payment Slip</p>
+                        <p class="text-center text-light">Broght To By Site Name</p>
+                        <p class="text-center text-light">Thanks For Pertnership</p>
+                    </div>
                 </div>
             </div>
         </section>

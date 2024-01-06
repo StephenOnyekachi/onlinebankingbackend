@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <form action="{% url 'transfer_finish' %}" method="get" enctype="multipart/form-data">
+                            <form action="{% url 'transfer_finish' %}" method="post" enctype="multipart/form-data">
                                 <!-- <form  method="post" enctype="multipart/form-data"> -->
                                 {% csrf_token %}
                                 <div>
@@ -73,7 +73,9 @@
                                         <h4>account number</h4>
                                     </div>
                                     <div>
-                                        <input type="number" class="form-control p-3" placeholder="Enter Account Number" name="account_number" required>
+                                        <input type="number" class="form-control p-3" 
+                                            placeholder="Enter Account Number" name="account_number" require
+                                        >
                                     </div>
                                 </div>
                                 <div>
@@ -81,7 +83,9 @@
                                         <h4>amount</h4>
                                     </div>
                                     <div>
-                                        <input type="number" class="form-control p-3" placeholder="Enter Amount" name="amount" required>
+                                        <input type="number" class="form-control p-3" 
+                                            placeholder="Enter Amount" name="amount" require
+                                        >
                                     </div>
                                 </div>
                                 <div>
