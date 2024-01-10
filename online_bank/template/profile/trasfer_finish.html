@@ -1,0 +1,107 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>trasfer</title>
+
+<body>
+    
+    <div>
+        
+        {% include 'nav_auth/links2.html' %}
+
+        <section class="col-md-12" id="dashboad_section2">
+            <div class="col-md-12">
+
+                {% if receive %}
+
+                <div class="col-md-12 content">
+                    <div class="text-center">
+                        <span>
+                            {{ amount_number }}
+                        </span>
+                        <h4>
+                            account not found try again
+                        </h4>
+                    </div>
+                </div>
+                
+                {% else %}
+                
+                <div class="col-md-12 content">
+                    <div>
+                        <h4>
+                            Receiver:
+                        </h4>
+                        <span>
+                            {{ receiver.user.first_name }} {{ receiver.user.last_name }}
+                        </span>
+                    </div>
+                    <div>
+                        <h4>
+                            Bank:
+                        </h4>
+                        <span>
+                            {{ receiver.user.bank }}
+                        </span>
+                    </div>
+                    <div>
+                        <h4>
+                            ACCOUNT NUMBER:
+                        </h4>
+                        <span>
+                            {{ receiver.user.account_number }}
+                        </span>
+                    </div>
+                    <div>
+                        <h4>
+                            AMOUNT:
+                        </h4>
+                        <span>
+                            {{ amount }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-12 content">
+                    <div>
+                        <h2>
+                            Transfer
+                        </h2>
+                    </div>
+                    <form action="{% url 'confirm' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div>
+                            
+                            <input type="text" 
+                                value="{{ receiver.user.first_name }} {{ receiver.user.last_name }}" 
+                                name="receiver" hidden
+                            >
+                            <input type="text" 
+                                value="{{ request.user.first_name }} {{ request.user.last_name }}" 
+                                name="sender" hidden
+                            >
+                            <input type="text" value="{{ receiver.bank }}" name="bank" hidden>
+                            <input type="text" value="{{ receiver.account_number }}" name="account_number" hidden>
+                            <input type="number" value="{{ amount }}" name="amount" hidden>
+                            
+                        </div>
+                        <div>
+                            <h4>
+                                OTP code:
+                            </h4>
+                            <input type="number" class="form-control" placeholder="Enter OTP code" name="otp">
+                        </div>
+                        <div class="proceed">
+                            <button>proceed</button>
+                        </div>
+                    </form>
+                </div>
+
+                {% endif %}
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}

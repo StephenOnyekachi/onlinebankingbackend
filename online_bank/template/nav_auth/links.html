@@ -1,0 +1,48 @@
+
+
+<section class="col-md-12" id="dashboad_section1">
+    <div class="menu">
+        <div>
+            <h3 id="sitename">site name</h3>
+        </div>
+        
+        <div class="menu_links">
+            <ul>
+                <li>
+                    <a href="{% url 'dashboard' %}" {% if '/dashboard/' == request.path %} class="active" {% endif %}>
+                        <i class="fa fa-home"></i>
+                        <small>dashboad</small>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'view_profile' %}" {% if '/view_profile/' == request.path %} class="active" {% endif %}>
+                        <i class="fa fa-user-o"></i>
+                        <small>profile</small>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'create_new_user' %}" {% if '/create_new_user/' == request.path %} class="active" {% endif %}>
+                        <i class="fa fa-address-book"></i>
+                        <small>Create New Account</small>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'all_users' %}" {% if '/all_users/' == request.path %} class="active" {% endif %}>
+                        <i class="fa fa-users"></i>
+                        <small>Users</small>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}" {% if '/logout/' == request.path %} class="active" {% endif %}>
+                        <i class="fa fa-power-off"></i>
+                        <small>logout</small>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mini_menu">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+</section>

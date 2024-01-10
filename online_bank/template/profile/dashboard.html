@@ -1,0 +1,158 @@
+
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>dashboad</title>
+
+<body>
+    
+    <div>
+
+        {% if request.user.is_superuser %}
+        {% include 'nav_auth/links.html' %}
+        {% else %}
+        {% include 'nav_auth/links2.html' %}
+        {% endif %}
+
+        <section class="col-md-12" id="dashboad_section2">
+            <div class="col-md-12 content_proceed">
+                <div>
+                    <h4 style="color: var(--body-bg);">
+                        welcome back {{ request.user.username }}
+                    </h4>
+                </div>
+                <div class="varifile">
+                    <small>Varified</small>
+                </div>
+            </div>
+
+            {% for message in messages %}
+            <div class="col-md-12 p-3">
+                <div class="text-center">
+                    <h3>{{message}}</h3>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="col-md-5">
+                <div class="col-md-12 content">
+                    <div>
+                        <h2 class="text-success">
+                            {{ user.currency }}
+                        </h2>
+                    </div>
+                    <div>
+                        <h4>
+                            balance
+                        </h4>
+                    </div>
+                    <div>
+                        <h1>
+                            {{ user.balance }}
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-md-12 content">
+                    <div>
+                        <h2>
+                            Transfer
+                        </h2>
+                    </div>
+                    <div>
+                        <h4>
+                            transfer from balance
+                        </h4>
+                        <small class="text-success">
+                            <span>{{user.currency}}</span> {{user.balance}}
+                        </small>
+                    </div>
+                    <div class="proceed">
+                        <a href="{% url 'transfer' %}">
+                            proceed
+                        </a>
+                        <a href="{% url 'transfer1' %}">
+                            proceed to
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="content">
+                    <div>
+                        <h2>
+                            View Profile
+                        </h2>
+                    </div>
+                    <div>
+                        <small>
+                            User
+                        </small>
+                        <h4>
+                            {{ user.user.first_name }} {{ user.user.last_name }}
+                        </h4>
+                    </div>
+                    <div class="proceed">
+                        <a href="{% url 'view_profile' %}">
+                            proceed
+                        </a>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="border-bottom">
+                        <h2>
+                            Transaction Histories
+                        </h2>
+                        <!-- <div class="varifile">
+                            Total:  <small>3</small>
+                        </div> -->
+                    </div>
+                    <div style="height: 200px; overflow-y: scroll;">
+                        <div>
+                            
+                        </div>
+                        {% if history %}
+                            {% for history in history %}
+                            <div>
+                                <a href="{% url 'history' %}">
+                                    <div class="history">
+                                        <small>
+                                            {{ history.sender}}
+                                        </small>
+                                        <br>
+                                        {% if request.user.username != sender %}
+                                        <small>
+                                            -$ {{history.amount}}
+                                        </small>
+                                        {% else %}
+                                        <small>
+                                            +$ {{history.amount}}
+                                        </small>
+                                        {% endif %}
+                                        <br>
+                                        <small>
+                                            To: {{ history.receiver}}
+                                        </small>
+                                        <br>
+                                        <small>
+                                            Date: {{history.time_stamp}}
+                                        </small>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                        <div class="p-3">
+                            <div class="text-center">
+                                <h3>No Transaction made</h3>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>trasfer</title>
+
+<body>
+    
+    <div>
+        
+        {% include 'nav_auth/links.html' %}
+
+        <section class="col-md-12" id="dashboad_section2">
+            <div class="col-md-12">
+                <div class="col-md-12 content">
+                    <div>
+                        <h2>
+                            Receiver: Receiver Name
+                        </h2>
+                    </div>
+                    <div>
+                        <h2>
+                            Bank: Zineth Bank
+                        </h2>
+                    </div>
+                    <div>
+                        <h2>
+                            Account Number: 221********44
+                        </h2>
+                    </div>
+                    <div>
+                        <h1>
+                            Amount: <span>$</span>100,000.00
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-md-12 content">
+                    <div class="proceed">
+                        <a href="dashboard.html">back to dashboard</a>
+                        <a href="dashboard.html">download slip</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}

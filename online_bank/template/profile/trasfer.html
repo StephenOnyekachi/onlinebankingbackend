@@ -1,0 +1,62 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>trasfer</title>
+
+<body>
+    
+    <div>
+        
+        {% include 'nav_auth/links2.html' %}
+
+        <section class="col-md-12" id="dashboad_section2">
+            <div class="col-md-12">
+                <div class="col-md-12 content">
+                    <div>
+                        <h2 class="text-success">
+                            {{ user.currency }}
+                        </h2>
+                    </div>
+                    <div>
+                        <h4>
+                            balance
+                        </h4>
+                    </div>
+                    <div>
+                        <h1>
+                            {{ user.balance }}
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-md-12 content">
+                    <div>
+                        <h2>
+                            Trasaction
+                        </h2>
+                    </div>
+                    <form action="{% url 'transfer_finish' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div>
+                            <h4>
+                                account number:
+                            </h4>
+                            <input type="number" class="form-control" placeholder="Enter Account Number" name="account_number" required>
+                        </div>
+                        <div>
+                            <h4>
+                                amount:
+                            </h4>
+                            <input type="number" class="form-control" placeholder="Enter Amount" name="amount">
+                        </div>
+                        <div class="proceed">
+                            <button>proceed</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}

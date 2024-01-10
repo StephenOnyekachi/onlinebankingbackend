@@ -1,0 +1,85 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>users</title>
+
+<body>
+    
+    <div>
+        
+        {% include 'nav_auth/links.html' %}
+
+        <section class="col-md-12" id="dashboad_section2">
+            <div class="col-md-12 content_proceed">
+                <div>
+                    <h4 style="color: var(--body-bg);">
+                        welcome back {{ request.user.username }}
+                    </h4>
+                </div>
+                <div class="varifile">
+                    <small>Varified</small>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="content">
+                    <div class="border-bottom">
+                        <h2>
+                            All Users
+                        </h2>
+                    </div>
+                    
+                    <div>
+                        {% if users %}
+                            {% for user in users %}
+                            
+                                {% if user.user.is_superuser == False %}
+                                <!-- <div style="border: 1px solid var(--body-border);margin: 5px;padding: 5px;"> -->
+                                <div>
+                                    <div style="margin: 5px;padding: 5px;">
+                                        <div class="proceed">
+                                            {% if user.balance >= 1 %}
+                                            <div class="varifile">
+                                                <small>Varified</small>
+                                            </div>
+                                            {% else %}
+                                            <div>
+                                                <a href="{% url 'complete_user' user.id %}">complete user creation</a>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'view_user' user.id %}">
+                                        <div class="history">
+                                            <small>
+                                                $ {{user.balance}}
+                                            </small>
+                                            <br>
+                                            <small>
+                                                User Name: {{user.user.username}}
+                                            </small>
+                                            <br>
+                                            <small>
+                                                Date joined: {{user.date_joined}}
+                                            </small>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                        <div>
+                            <div class="alert alert-warning text-center">
+                                <h3>No User Fund</h3>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}

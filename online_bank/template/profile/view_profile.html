@@ -1,0 +1,133 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>profile</title>
+
+<body>
+    
+    <div>
+        
+        {% if request.user.is_superuser %}
+        {% include 'nav_auth/links.html' %}
+        {% else %}
+        {% include 'nav_auth/links2.html' %}
+        {% endif %}
+
+        <section class="col-md-12" id="dashboad_section2">
+            <div class="col-md-12 content_proceed">
+                <div>
+                    <h4 style="color: var(--body-bg);">
+                        Profile Information
+                    </h4>
+                </div>
+                <div class="varifile">
+                    <small>Varified</small>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="content">
+                        <div>
+                            <h4>
+                                user name:
+                            </h4>
+                            <span>
+                                {{ user.user.first_name }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>
+                                first name:
+                            </h4>
+                            <span>
+                                {{ user.user.first_name }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>
+                                last name:
+                            </h4>
+                            <span>
+                                {{ user.user.last_name }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>
+                                email:
+                            </h4>
+                            <span>
+                                {{ user.user.email }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>
+                                date joined:
+                            </h4>
+                            <span>
+                                {{ user.user.date_joined}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="content">
+                        <div>
+                            <h4>
+                                account number:
+                            </h4>
+                            <span>
+                                {{ user.account_number }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>
+                                curency type:
+                            </h4>
+                            <span>
+                                {{ user.currency }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>  
+                                Country:
+                            </h4>
+                            <span>
+                                {{ user.country }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4>  
+                                Address:
+                            </h4>
+                            <span>{{ user.address }}</span>
+                        </div>
+                        <div>
+                            <h4>
+                                account type:
+                            </h4>
+                            <span>
+                                {{ user.account_type }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-12 content">
+                    <div>
+                        <h2>
+                            Back To Dashboad
+                        </h2>
+                    </div>
+                    <div class="proceed">
+                    <a href="{% url 'dashboard' %}">proceed</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}

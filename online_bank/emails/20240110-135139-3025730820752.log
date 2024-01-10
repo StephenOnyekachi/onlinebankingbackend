@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: onyekachistephen18@gmail.com
+Date: Wed, 10 Jan 2024 12:51:39 -0000
+Message-ID: <170489109950.24584.12980257076132180984@Stephen>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/reset/Mw/c0lai3-b56fe1569d5368ebd8f64a13a922f9de/
+
+Your username, in case you’ve forgotten: onyekachi
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------

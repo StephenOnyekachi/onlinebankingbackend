@@ -1,0 +1,88 @@
+{% extends 'nav_auth/extentions.html' %}
+{% load static %}
+{% block content %}
+
+<title>signup</title>
+
+<body>
+    
+    <div>
+
+        {% include 'nav_auth/links.html' %}
+
+        <section class="col-md-12" id="dashboad_section2">
+            <div class="col-md-12 content_proceed">
+                <div>
+                    <h4 style="color: var(--body-bg);">
+                        welcome back Stephen
+                    </h4>
+                </div>
+                <div class="varifile">
+                    <small>Varified</small>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="col-md-12 content">
+                    <div class="border-bottom">
+                        <h2>
+                            Fill in The Forms
+                        </h2>
+                    </div>
+                    {% for message in messages %}
+                    <div class="p-3">
+                        <div class="alert alert-warning text-center">
+                            <h3>{{message}}</h3>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div>
+                            <h4>
+                                user name:
+                            </h4>
+                            <input type="text" class="form-control" placeholder="Enter User Name" name="username">
+                        </div>
+                        <div>
+                            <h4>
+                                first name:
+                            </h4>
+                            <input type="text" class="form-control" placeholder="Enter First Name" name="firstname">
+                        </div>
+                        <div>
+                            <h4>
+                                last name:
+                            </h4>
+                            <input type="text" class="form-control" placeholder="Enter Last Name" name="lastname">
+                        </div>
+                        <div>
+                            <h4>
+                                email:
+                            </h4>
+                            <input type="email" class="form-control" placeholder="Enter Email" name="email">
+                        </div>
+                        <div>
+                            <h4>
+                                create password:
+                            </h4>
+                            <input type="password" class="form-control" placeholder="Enter Password" name="password1">
+                        </div>
+                        <div>
+                            <h4>
+                                confirm password:
+                            </h4>
+                            <input type="password" class="form-control" placeholder="Confirm Password" name="password2">
+                        </div>
+
+                        <div class="proceed">
+                            <button>proceed</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+{% endblock %}
